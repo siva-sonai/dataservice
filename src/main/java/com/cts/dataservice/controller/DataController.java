@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class DataController {
 
     private DataService dataService;
@@ -25,7 +25,7 @@ public class DataController {
         this.dataService = dataService;
     }
 
-    @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
+    @RequestMapping(value = "/getEvents", method = RequestMethod.GET,  produces = { "application/json" })
     public Page<Event> getEvents(@RequestParam(value = "page", defaultValue = "0") int page,
                                  @RequestParam(value = "limit", defaultValue = "30") int limit) {
         Pageable pageable = PageRequest.of(page, limit);
